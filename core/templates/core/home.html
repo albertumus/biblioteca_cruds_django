@@ -1,0 +1,41 @@
+{% extends 'cruds/base.html' %}
+{% load i18n %}
+
+
+{% block title %}{% trans "Demo Index" %}{% endblock %}
+{% block page_name %} {% trans "Biblioteca Privada" %} {% endblock %}
+{% block page_description %}{% trans "Donde los libros hay que pagarlos" %} {% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto">
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenido!</h1>
+        <p class="lead">¿Deseando leer algo nuevo? ¿Quizá buscar algun libro interesante? ¡Estás en el lugar adecuado!</p>
+        <hr class="my-4">
+        <p>Escribe el nombre del libro o autor que estás buscando</p>
+        <p class="lead">
+        <form method="GET" action="">
+                <input class="col-lg-3" type="text" name="q" placeholder="Buscar libro por titulo o autor" value="{{request.GET.q}}">
+                <button type="submit" value="Search" class="btn btn-primary">Buscar</button>
+            </form>
+        </p>
+    </div>
+
+   {% if request.GET.q|length >= 1  %}
+        {% for resultado in autores_libros_filtrados %}
+        <div class="card col-lg-3">
+            <h5 class="card-header">{{ resultado.titulo }}</h5>
+            <div class="card-body">
+                <h5 class="card-title"><small>{{ resultado.autor_libro }}<small></h5>
+                <a href="#" class="btn btn-primary">Ver libro</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+</div> 
+
+
+
+{% endblock %}
