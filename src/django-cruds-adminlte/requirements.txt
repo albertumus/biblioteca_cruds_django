@@ -1,0 +1,2 @@
+django-select2==6.0.2
+easy-thumbnails==2.5
